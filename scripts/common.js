@@ -35,9 +35,14 @@ li.forEach((el, index) => {
         li.forEach(liEl => {
             finalResult += liEl.querySelector('span').innerHTML
         })
-        const returnResult = binToUtf8(finalResult)
+        console.log(binToUtf8(finalResult));
+        const returnResult = binToUtf8(finalResult) == ' ' ? 'Пробел' : binToUtf8(finalResult)
         $('.result-code span').innerHTML = returnResult
     })
+})
+$('input').addEventListener('input', function() {
+    const val = convert(this.value)
+    $('.result-input span').innerHTML = val
 })
 const binToUtf8 = (s) => {
     try {
@@ -60,13 +65,16 @@ alphabet.forEach(word => {
 })
 
 function convert(str) {
-    const bin = str.charCodeAt().toString(2);
-    resultBin = bin.length < 7
-        ? '00' + bin
+    let s = ''
+    for(let i = 0; i < str.length; i++) {
+        const bin = str[i].charCodeAt().toString(2);
+        s += bin.length < 7
+        ? '00' + bin + ' '
         : bin.length < 8
-            ? '0' + bin
-            : bin;
-    return resultBin;
+            ? '0' + bin + ' '
+            : bin + ' ';
+    }
+    return s.trim();
 }
 function calc(number) {
     let resultCalc = 0

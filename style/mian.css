@@ -125,3 +125,18 @@ section.active {
     font-size: 25px;
     margin-top: 50px;
 }
+.result-input {
+    max-width: 500px;
+    width: 100%;
+    margin: 30px auto 0;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    line-height: 30px;
+}
+input {
+    outline: none;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+}
