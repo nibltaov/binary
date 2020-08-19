@@ -20,12 +20,8 @@ const table = $('.alphabet__table')
 li.forEach((el, index) => {
     el.addEventListener('click', () => {
         const span = el.querySelector('span')
-        let finalResult = ''
-        li.forEach(liEl => {
-            finalResult += liEl.querySelector('span').innerHTML
-        })
-        const returnResult = binToUtf8(finalResult)
-        $('.result-code span').innerHTML = returnResult
+
+        
         let innerSpan = Number(span.innerHTML)
         if (!innerSpan) {
             span.innerHTML = 1
@@ -35,6 +31,12 @@ li.forEach((el, index) => {
             span.innerHTML = 0
             result.innerHTML = result.innerHTML - array[index]
         }
+        let finalResult = ''
+        li.forEach(liEl => {
+            finalResult += liEl.querySelector('span').innerHTML
+        })
+        const returnResult = binToUtf8(finalResult)
+        $('.result-code span').innerHTML = returnResult
     })
 })
 const binToUtf8 = (s) => {
