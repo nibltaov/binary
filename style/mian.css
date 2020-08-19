@@ -118,3 +118,10 @@ section.active {
     padding: 10px;
     font-size: 20px;
 }
+.result-code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    margin-top: 50px;
+}

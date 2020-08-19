@@ -20,6 +20,12 @@ const table = $('.alphabet__table')
 li.forEach((el, index) => {
     el.addEventListener('click', () => {
         const span = el.querySelector('span')
+        let finalResult = ''
+        li.forEach(liEl => {
+            finalResult += liEl.querySelector('span').innerHTML
+        })
+        const returnResult = binToUtf8(finalResult)
+        $('.result-code span').innerHTML = returnResult
         let innerSpan = Number(span.innerHTML)
         if (!innerSpan) {
             span.innerHTML = 1
@@ -31,6 +37,18 @@ li.forEach((el, index) => {
         }
     })
 })
+const binToUtf8 = (s) => {
+    try {
+        let i = 0, l = s.length, chr, out = '';
+        for (; i < l; i += 8) {
+            chr = parseInt(s.substr(i, 8), 2).toString(16);
+            out += '%' + ((chr.length % 2 == 0) ? chr : '0' + chr);
+        }
+        return decodeURIComponent(out);
+    } catch {
+        return 'Ошибка двоичного кода';
+    }
+}
 const alphabet = 'ABCDEFGHIKLMNOPQRSTVXYZabcdefghiklmnopqrstvxyz'.split('')
 table.innerHTML = `<div class='row'><div>Символ</div><div>Общее число</div><div>Двоичный код</div></div>`
 alphabet.forEach(word => {
@@ -69,7 +87,7 @@ const hashChange = () => {
             list.classList.remove('active')
             $(list.getAttribute('href')).classList.remove('active')
         }
-        
+
     })
 }
 window.addEventListener('hashchange', hashChange)
