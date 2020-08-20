@@ -20,7 +20,6 @@ const table = $('.alphabet__table')
 li.forEach((el, index) => {
     el.addEventListener('click', () => {
         const span = el.querySelector('span')
-
         
         let innerSpan = Number(span.innerHTML)
         if (!innerSpan) {
@@ -31,6 +30,7 @@ li.forEach((el, index) => {
             span.innerHTML = 0
             result.innerHTML = result.innerHTML - array[index]
         }
+        span.classList.toggle('active')
         let finalResult = ''
         li.forEach(liEl => {
             finalResult += liEl.querySelector('span').innerHTML
